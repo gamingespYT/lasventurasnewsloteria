@@ -233,22 +233,23 @@ function initSnowfall() {
 // ========================================
 
 /**
- * Populates the name suggestions datalist from the database
+ * Populates the name select dropdown from the database
  */
 function populateNameSuggestions() {
-    const datalist = document.getElementById('namesSuggestions');
+    const selectElement = document.getElementById('userName');
 
-    // Clear existing options
-    datalist.innerHTML = '';
+    // Clear existing options except the first placeholder
+    selectElement.innerHTML = '<option value="" disabled selected>Selecciona un nombre...</option>';
 
     // Add an option for each name in the database
-    Object.keys(lotteryDatabase).forEach(name => {
+    Object.keys(lotteryDatabase).sort().forEach(name => {
         const option = document.createElement('option');
         option.value = name;
-        datalist.appendChild(option);
+        option.textContent = name;
+        selectElement.appendChild(option);
     });
 
-    console.log(`✓ Loaded ${Object.keys(lotteryDatabase).length} name suggestions`);
+    console.log(`✓ Loaded ${Object.keys(lotteryDatabase).length} names in dropdown`);
 }
 
 // ========================================

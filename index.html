@@ -43,9 +43,10 @@
             <form id="verificationForm" class="christmas-form">
 
                 <div class="field">
-                    <label for="userName">Nombre del titular</label>
-                    <input type="text" id="userName" list="namesSuggestions" placeholder="Ej: Gus, Luna, John..."
-                        autocomplete="off" required>
+                    <label for="userName">👤 Nombre del titular</label>
+                    <select id="userName" required>
+                        <option value="" disabled selected>Selecciona un nombre...</option>
+                    </select>
                 </div>
 
                 <div class="field">
@@ -60,9 +61,7 @@
 
             </form>
 
-            <datalist id="namesSuggestions">
-                <!-- Populated dynamically by script.js -->
-            </datalist>
+
 
             <div id="resultContainer" class="result hidden">
                 <div id="resultContent"></div>
