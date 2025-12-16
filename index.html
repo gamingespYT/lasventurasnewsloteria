@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lotería de Navidad – Las Venturas News</title>
+
+    <meta name="description"
+        content="Comprobador de titularidad de números de la Lotería de Navidad de Las Venturas News">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Snowflakes container -->
+    <div id="snowContainer" class="snow-container"></div>
+
+    <main class="christmas-wrapper">
+
+        <header class="christmas-header">
+            <h1>Lotería de Navidad</h1>
+            <p>Las Venturas News</p>
+        </header>
+
+        <section class="christmas-card">
+
+            <h2>Comprobador de Titularidad</h2>
+            <p class="description">
+                Introduce tus datos para comprobar si el número te pertenece
+            </p>
+
+            <form id="verificationForm" class="christmas-form">
+
+                <div class="field">
+                    <label for="userName">Nombre del titular</label>
+                    <input type="text" id="userName" list="namesSuggestions" placeholder="Ej: Gus, Luna, John..."
+                        autocomplete="off" required>
+                </div>
+
+                <div class="field">
+                    <label for="lotteryNumber">Número de Navidad</label>
+                    <input type="text" id="lotteryNumber" placeholder="00000" maxlength="5" required>
+                    <small>Debe contener 5 cifras</small>
+                </div>
+
+                <button type="submit" class="christmas-button">
+                    🎁 Comprobar número
+                </button>
+
+            </form>
+
+            <datalist id="namesSuggestions">
+                <!-- Populated dynamically by script.js -->
+            </datalist>
+
+            <div id="resultContainer" class="result hidden">
+                <div id="resultContent"></div>
+            </div>
+
+        </section>
+
+        <footer class="christmas-footer">
+            <p>© 2025 Las Venturas News · Lotería de Navidad</p>
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

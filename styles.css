@@ -1,0 +1,212 @@
+/* ===================== RESET ===================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===================== BASE ===================== */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: url('/pngtree-vibrant-red-christmas-background-with-pine-branches-and-fairy-lights-image_16685257.jpg') center/cover fixed;
+    background-color: #8B0000;
+    min-height: 100vh;
+    color: #2c2c2c;
+    overflow-x: hidden;
+}
+
+/* ===================== SNOWFALL ANIMATION ===================== */
+.snow-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.snowflake {
+    position: absolute;
+    top: -10px;
+    color: #ffffff;
+    font-size: 1rem;
+    opacity: 0.95;
+    animation: fall linear infinite;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.9), 0 0 5px rgba(255, 255, 255, 1);
+    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.7));
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
+
+/* ===================== LAYOUT ===================== */
+.christmas-wrapper {
+    max-width: 480px;
+    margin: auto;
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    gap: 2rem;
+}
+
+/* ===================== HEADER ===================== */
+.christmas-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.badge {
+    display: inline-block;
+    background: #c1121f;
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.christmas-header h1 {
+    font-family: 'Mountains of Christmas', cursive;
+    font-size: 4rem;
+    color: #FFD700;
+    text-shadow:
+        2px 2px 4px rgba(0, 0, 0, 0.7),
+        0 0 20px rgba(255, 215, 0, 0.6),
+        0 0 30px rgba(255, 215, 0, 0.4);
+    margin-bottom: 0.5rem;
+}
+
+.christmas-header p {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* ===================== CARD ===================== */
+.christmas-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    border: 4px dashed #c1121f;
+}
+
+.christmas-card h2 {
+    text-align: center;
+    color: #b11226;
+    margin-bottom: 0.5rem;
+}
+
+.description {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+}
+
+/* ===================== FORM ===================== */
+.christmas-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.field label {
+    font-weight: 600;
+    color: #2f6f4e;
+    font-size: 0.85rem;
+}
+
+.field input {
+    padding: 0.8rem 1rem;
+    border-radius: 999px;
+    border: 2px solid #e0e0e0;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.3s;
+}
+
+.field input:focus {
+    border-color: #2f6f4e;
+    box-shadow: 0 0 0 3px rgba(47, 111, 78, 0.15);
+}
+
+.field small {
+    font-size: 0.75rem;
+    color: #888;
+    margin-left: 0.5rem;
+}
+
+/* ===================== BUTTON ===================== */
+.christmas-button {
+    margin-top: 1rem;
+    padding: 0.9rem;
+    border: none;
+    border-radius: 999px;
+    background: repeating-linear-gradient(45deg,
+            #c1121f,
+            #c1121f 10px,
+            #2f6f4e 10px,
+            #2f6f4e 20px);
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.christmas-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* ===================== RESULT ===================== */
+.result {
+    margin-top: 1.5rem;
+}
+
+.hidden {
+    display: none;
+}
+
+.result-content {
+    padding: 1.2rem;
+    border-radius: 1rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+.result-success {
+    background: #2f6f4e;
+    color: white;
+}
+
+.result-error {
+    background: #c1121f;
+    color: white;
+}
+
+/* ===================== FOOTER ===================== */
+.christmas-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
+}
