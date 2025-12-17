@@ -29,6 +29,17 @@ const resultContent = document.getElementById('resultContent');
 // ========================================
 
 /**
+ * Calculates the total number of lottery tickets sold
+ */
+function getTotalTicketsSold() {
+    let total = 0;
+    for (const numbers of Object.values(lotteryDatabase)) {
+        total += numbers.length;
+    }
+    return total;
+}
+
+/**
  * Shows a custom alert with a message and icon
  */
 function showCustomAlert(message, icon = '⚠️') {
@@ -313,6 +324,15 @@ function populateNameSuggestions() {
 document.addEventListener('DOMContentLoaded', () => {
     console.log('🎄 Lotería de Navidad - Las Venturas News');
     console.log(`📋 Total de titulares registrados: ${Object.keys(lotteryDatabase).length}`);
+    
+    const totalTickets = getTotalTicketsSold();
+    console.log(`🎫 Total de números vendidos: ${totalTickets}`);
+    
+    // Display total tickets sold in the UI
+    const totalTicketsElement = document.getElementById('totalTickets');
+    if (totalTicketsElement) {
+        totalTicketsElement.textContent = totalTickets;
+    }
 
     // Initialize snowfall effect
     initSnowfall();

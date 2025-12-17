@@ -48,13 +48,13 @@ body {
 .christmas-wrapper {
     max-width: 480px;
     margin: auto;
-    padding: 2rem 1rem;
+    padding: 1rem 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    gap: 2rem;
+    gap: 1rem;
     position: relative;
     z-index: 1;
 }
@@ -62,7 +62,7 @@ body {
 /* ===================== HEADER ===================== */
 .christmas-header {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
     position: relative;
     z-index: 2;
 }
@@ -80,13 +80,13 @@ body {
 
 .christmas-header h1 {
     font-family: 'Mountains of Christmas', cursive;
-    font-size: 4rem;
+    font-size: 3rem;
     color: #FFD700;
     text-shadow:
         2px 2px 4px rgba(0, 0, 0, 0.7),
         0 0 20px rgba(255, 215, 0, 0.6),
         0 0 30px rgba(255, 215, 0, 0.4);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
 }
 
 .christmas-header p {
@@ -101,7 +101,7 @@ body {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     border-radius: 1.5rem;
-    padding: 2rem;
+    padding: 1.5rem;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     border: 4px dashed #c1121f;
     position: relative;
@@ -118,7 +118,39 @@ body {
     text-align: center;
     font-size: 0.9rem;
     color: #555;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+/* ===================== STATS COUNTER ===================== */
+.stats-counter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #2f6f4e 0%, #1f4d33 100%);
+    color: white;
+    padding: 0.7rem 1.5rem;
+    border-radius: 999px;
+    font-weight: 600;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 30px rgba(47, 111, 78, 0.4);
+    border: 3px solid rgba(255, 215, 0, 0.3);
+    position: relative;
+    z-index: 2;
+}
+
+.stats-icon {
+    font-size: 1.2rem;
+}
+
+.stats-label {
+    font-size: 0.9rem;
+}
+
+.stats-value {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #FFD700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
 }
 
 /* ===================== FORM ===================== */
