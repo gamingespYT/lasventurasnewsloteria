@@ -22,8 +22,6 @@ const lotteryDatabase = {
 const form = document.getElementById('verificationForm');
 const userNameInput = document.getElementById('userName');
 const lotteryNumberInput = document.getElementById('lotteryNumber');
-const resultContainer = document.getElementById('resultContainer');
-const resultContent = document.getElementById('resultContent');
 
 // ========================================
 // Utility Functions
@@ -145,43 +143,15 @@ function verifyLotteryNumber(name, number) {
  * Displays the verification result
  */
 function displayResult(result) {
-    resultContainer.classList.remove('hidden');
-
     if (result.success) {
-        resultContent.className = 'result-content result-success';
-        resultContent.innerHTML = `
-            <span class="result-icon">✓</span>
-            <div class="result-message">¡Número Verificado!</div>
-            <div class="result-details">
-                El número <strong>${result.number}</strong> pertenece a <strong>${result.holderName}</strong>
-            </div>
-        `;
+        showCustomAlert(`¡Número Verificado!\n\nEl número ${result.number} pertenece a ${result.holderName}`, '✅');
     } else {
-        resultContent.className = 'result-content result-error';
-
         if (result.reason === 'number_not_found') {
-            resultContent.innerHTML = `
-                <span class="result-icon">✗</span>
-                <div class="result-message">Número No Válido</div>
-                <div class="result-details">
-                    El número no está registrado para <strong>${result.holderName}</strong>
-                </div>
-            `;
+            showCustomAlert(`Número No Válido\n\nEl número no está registrado para ${result.holderName}`, '❌');
         } else {
-            resultContent.innerHTML = `
-                <span class="result-icon">✗</span>
-                <div class="result-message">Titular No Encontrado</div>
-                <div class="result-details">
-                    No se encontró ningún registro con ese nombre
-                </div>
-            `;
+            showCustomAlert('Titular No Encontrado\n\nNo se encontró ningún registro con ese nombre', '❌');
         }
     }
-
-    // Scroll to result smoothly
-    setTimeout(() => {
-        resultContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }, 100);
 }
 
 /**
@@ -227,21 +197,6 @@ form.addEventListener('submit', (e) => {
  */
 lotteryNumberInput.addEventListener('input', (e) => {
     e.target.value = e.target.value.replace(/[^0-9]/g, '');
-});
-
-/**
- * Hide result when user starts typing again
- */
-userNameInput.addEventListener('input', () => {
-    if (!resultContainer.classList.contains('hidden')) {
-        resultContainer.classList.add('hidden');
-    }
-});
-
-lotteryNumberInput.addEventListener('input', () => {
-    if (!resultContainer.classList.contains('hidden')) {
-        resultContainer.classList.add('hidden');
-    }
 });
 
 // ========================================
