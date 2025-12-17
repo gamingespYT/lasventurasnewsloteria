@@ -28,6 +28,60 @@ const resultContent = document.getElementById('resultContent');
 // ========================================
 
 /**
+ * Shows a custom alert with a message and icon
+ */
+function showCustomAlert(message, icon = '⚠️') {
+    // Create overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'custom-alert-overlay';
+    
+    // Create alert box
+    const alertBox = document.createElement('div');
+    alertBox.className = 'custom-alert';
+    
+    // Create icon
+    const alertIcon = document.createElement('div');
+    alertIcon.className = 'custom-alert-icon';
+    alertIcon.textContent = icon;
+    
+    // Create message
+    const alertMessage = document.createElement('div');
+    alertMessage.className = 'custom-alert-message';
+    alertMessage.textContent = message;
+    
+    // Create button
+    const alertButton = document.createElement('button');
+    alertButton.className = 'custom-alert-button';
+    alertButton.textContent = 'Entendido';
+    
+    // Close alert on button click
+    alertButton.addEventListener('click', () => {
+        overlay.style.animation = 'fadeIn 0.2s ease-in-out reverse';
+        setTimeout(() => overlay.remove(), 200);
+    });
+    
+    // Close alert on overlay click
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+            overlay.style.animation = 'fadeIn 0.2s ease-in-out reverse';
+            setTimeout(() => overlay.remove(), 200);
+        }
+    });
+    
+    // Assemble alert
+    alertBox.appendChild(alertIcon);
+    alertBox.appendChild(alertMessage);
+    alertBox.appendChild(alertButton);
+    overlay.appendChild(alertBox);
+    
+    // Add to page
+    document.body.appendChild(overlay);
+    
+    // Focus button for keyboard accessibility
+    setTimeout(() => alertButton.focus(), 100);
+}
+
+/**
  * Normalizes a name for comparison (removes accents, converts to lowercase, trims)
  */
 function normalizeName(name) {
@@ -139,13 +193,13 @@ form.addEventListener('submit', (e) => {
 
     // Validate inputs
     if (!userName) {
-        alert('Por favor, introduce tu nombre');
+        showCustomAlert('Por favor, introduce tu nombre', '👤');
         userNameInput.focus();
         return;
     }
 
     if (!validateNumberFormat(lotteryNumber)) {
-        alert('Por favor, introduce un número de 5 dígitos');
+        showCustomAlert('Por favor, introduce un número de 5 dígitos', '🎫');
         lotteryNumberInput.focus();
         return;
     }
