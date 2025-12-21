@@ -7,16 +7,18 @@ const lotteryDatabase = {
     "Luna Martinez": ["22234", "91506", "08461", "24653", "69075"],
     "Claire Todd": ["56290"],
     "Toni Montana": ["53079", "17890", "92175", "08654", "41298"],
-    "Alex Goméz": ["97412", "50364", "85426", "69041", "23587"],
+    "Alex Gómez": ["97412", "50364", "85426", "69041", "23587"],
     "Jimmy Trivani": ["93028"],
     "Danna Okelly": ["43796", "26804", "75092", "81430", "59607", "76209", "59831", "47610", "24097", "18963"],
     "Noha Shefer": ["10483", "81564", "90531", "62487", "70145", "26789", "35298", "76903", "68954", "34702"],
     "Lucas Montero": ["48392", "31415", "92653", "80808"],
     "Daniel Luzbel": ["10574", "76281", "34905", "91846", "57023", "28491", "63970", "85124", "09638", "82051"],
     "Layla Gómez": ["69407"],
-    "Lolo Hernandez": ["34789", "47215", "73096", "56190", "15842", "90327", "21468", "65843", "29716", "84160"],
-    "Santiago Martinez": ["41987", "60197", "50273", "45831", "26490", "83715", "72054", "14698", "97340", "79062"],
-    "Mateo Díaz": ["78534", "46901", "12095"]
+    "Lolo Hernández": ["34789", "47215", "73096", "56190", "15842", "90327", "21468", "65843", "29716", "84160"],
+    "Santiago Martínez": ["41987", "60197", "50273", "45831", "26490", "83715", "72054", "14698", "97340", "79062"],
+    "Mateo Díaz": ["78534", "46901", "12095"],
+    "Pau Pérez": ["12384", "64218", "93071", "70596", "38942", "25079", "86103", "09472", "53816", "68521"],
+    "Byron Brown": ["22863", "21752", "26196", "25085", "23974", "17318", "16207", "20641", "19530", "18429"]
 };
 
 // ========================================
@@ -164,6 +166,34 @@ function validateNumberFormat(number) {
     return /^\d{5}$/.test(number);
 }
 
+/**
+ * Checks if a lottery number is duplicated across different holders
+ * Returns an object with duplicate information
+ */
+function checkDuplicateNumber(number) {
+    const holders = [];
+    
+    // Search for all holders of this number
+    for (const [name, numbers] of Object.entries(lotteryDatabase)) {
+        if (numbers.includes(number)) {
+            holders.push(name);
+        }
+    }
+    
+    // If more than one holder, it's a duplicate
+    if (holders.length > 1) {
+        return {
+            isDuplicate: true,
+            holders: holders,
+            number: number
+        };
+    }
+    
+    return {
+        isDuplicate: false
+    };
+}
+
 // ========================================
 // Event Handlers
 // ========================================
@@ -187,6 +217,16 @@ form.addEventListener('submit', (e) => {
     if (!validateNumberFormat(lotteryNumber)) {
         showCustomAlert('Por favor, introduce un número de 5 dígitos', '🎫');
         lotteryNumberInput.focus();
+        return;
+    }
+
+    // Check for duplicates first
+    const duplicateCheck = checkDuplicateNumber(lotteryNumber);
+    if (duplicateCheck.isDuplicate) {
+        showCustomAlert(
+            `⚠️ Número Duplicado Detectado ⚠️\n\nSi posees el número ${lotteryNumber}, por favor contacta con el servicio de atención al cliente de Las Venturas News para verificar la titularidad.\n\nEste número aparece registrado a múltiples personas.`,
+            '🚨'
+        );
         return;
     }
 
@@ -277,6 +317,43 @@ function populateNameSuggestions() {
     console.log(`✓ Loaded ${Object.keys(lotteryDatabase).length} names in dropdown`);
 }
 
+/**
+ * Scans the entire database for duplicate numbers and shows alert if found
+ */
+function scanForDuplicates() {
+    const numberMap = new Map();
+    const duplicates = [];
+
+    // Build a map of numbers to holders
+    for (const [name, numbers] of Object.entries(lotteryDatabase)) {
+        numbers.forEach(number => {
+            if (!numberMap.has(number)) {
+                numberMap.set(number, []);
+            }
+            numberMap.get(number).push(name);
+        });
+    }
+
+    // Find duplicates
+    for (const [number, holders] of numberMap.entries()) {
+        if (holders.length > 1) {
+            duplicates.push({ number, holders });
+        }
+    }
+
+    // Show alert if duplicates found
+    if (duplicates.length > 0) {
+        const duplicateNumbers = duplicates.map(d => d.number).join(', ');
+        showCustomAlert(
+            `⚠️ Números Duplicados Detectados ⚠️\n\nSe han encontrado ${duplicates.length} número(s) duplicado(s) en el sistema:\n\n${duplicateNumbers}\n\nSi posees alguno de estos números, por favor contacta con el servicio de atención al cliente de Las Venturas News para verificar la titularidad.`,
+            '🚨'
+        );
+        console.warn('⚠️ Duplicados encontrados:', duplicates);
+    } else {
+        console.log('✓ No se encontraron duplicados');
+    }
+}
+
 // ========================================
 // Initialize on Page Load
 // ========================================
@@ -298,4 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Populate name suggestions from database
     populateNameSuggestions();
+
+    // Scan for duplicate numbers on page load
+    scanForDuplicates();
 });
