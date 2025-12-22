@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Total por Persona – Lotería de Navidad</title>
+
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎄</text></svg>">
+
+    <meta name="description" content="Total ganado por cada persona en la Lotería de Navidad de Las Venturas News">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="total-styles.css?v=1.0">
+</head>
+
+<body>
+
+    <!-- Snowflakes container -->
+    <div id="snowContainer" class="snow-container"></div>
+
+    <main class="totals-wrapper">
+
+        <header class="totals-header">
+            <h1>💰 Total por Persona</h1>
+            <p>Lotería de Navidad 2025</p>
+        </header>
+
+        <div class="global-total">
+            <span class="global-icon">🏆</span>
+            <span class="global-label">Total global:</span>
+            <span class="global-value" id="globalTotal">0€</span>
+        </div>
+
+        <section class="totals-container" id="totalsContainer">
+            <!-- Los totales se cargarán dinámicamente -->
+        </section>
+
+        <div class="navigation-buttons">
+            <a href="index.html" class="nav-button">
+                📋 Ver todos los premios
+            </a>
+            <a href="../index.html" class="nav-button">
+                ← Volver al verificador
+            </a>
+        </div>
+
+    </main>
+
+    <script src="../script.js?v=3.0"></script>
+    <script src="total-script.js?v=1.0"></script>
+</body>
+
+</html>

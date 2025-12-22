@@ -1,0 +1,327 @@
+/* ===================== RESET ===================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===================== BASE ===================== */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: url('../pngtree-vibrant-red-christmas-background-with-pine-branches-and-fairy-lights-image_16685257.jpg') center/cover fixed;
+    background-color: #8B0000;
+    min-height: 100vh;
+    color: #2c2c2c;
+    overflow-x: hidden;
+}
+
+/* ===================== SNOWFALL ANIMATION ===================== */
+.snow-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.snowflake {
+    position: absolute;
+    top: -10px;
+    color: #ffffff;
+    font-size: 1rem;
+    opacity: 0.95;
+    animation: fall linear infinite;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.9), 0 0 5px rgba(255, 255, 255, 1);
+    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.7));
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
+
+/* ===================== LAYOUT ===================== */
+.totals-wrapper {
+    max-width: 900px;
+    margin: auto;
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+}
+
+/* ===================== HEADER ===================== */
+.totals-header {
+    text-align: center;
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.totals-header h1 {
+    font-family: 'Mountains of Christmas', cursive;
+    font-size: 3rem;
+    color: #FFD700;
+    text-shadow:
+        2px 2px 4px rgba(0, 0, 0, 0.7),
+        0 0 20px rgba(255, 215, 0, 0.6),
+        0 0 30px rgba(255, 215, 0, 0.4);
+    margin-bottom: 0.3rem;
+}
+
+.totals-header p {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* ===================== GLOBAL TOTAL ===================== */
+.global-total {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    color: #2c2c2c;
+    padding: 1rem 2rem;
+    border-radius: 999px;
+    font-weight: 700;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 215, 0, 0.5);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+    z-index: 2;
+}
+
+.global-icon {
+    font-size: 1.5rem;
+}
+
+.global-label {
+    font-size: 1rem;
+}
+
+.global-value {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #8B0000;
+}
+
+/* ===================== TOTALS CONTAINER ===================== */
+.totals-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* ===================== TOTAL CARD ===================== */
+.total-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    border: 3px solid #e0e0e0;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.total-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+}
+
+.total-card.no-prize {
+    opacity: 0.7;
+    border-color: #ccc;
+}
+
+/* Top 3 special styling */
+.total-top-1 {
+    border: 4px solid #FFD700;
+    background: #ffffff;
+    box-shadow: 0 12px 32px rgba(255, 215, 0, 0.4), 0 0 40px rgba(255, 215, 0, 0.3);
+}
+
+.total-top-2 {
+    border: 4px solid #C0C0C0;
+    background: #ffffff;
+    box-shadow: 0 12px 32px rgba(192, 192, 192, 0.4), 0 0 40px rgba(192, 192, 192, 0.3);
+}
+
+.total-top-3 {
+    border: 4px solid #CD7F32;
+    background: #ffffff;
+    box-shadow: 0 12px 32px rgba(205, 127, 50, 0.4), 0 0 40px rgba(205, 127, 50, 0.3);
+}
+
+/* ===================== TOTAL RANK ===================== */
+.total-rank {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    min-width: 60px;
+}
+
+.medal {
+    font-size: 2rem;
+}
+
+.rank-number {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #666;
+}
+
+/* ===================== TOTAL DETAILS ===================== */
+.total-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.person-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2c2c2c;
+}
+
+.person-total {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.person-total.has-prize {
+    color: #2f6f4e;
+}
+
+.person-total.no-prize-text {
+    color: #999;
+    font-size: 1.2rem;
+}
+
+/* ===================== PRIZES DETAIL ===================== */
+.prizes-detail {
+    margin-top: 0.5rem;
+    padding-top: 0.8rem;
+    border-top: 2px dashed #e0e0e0;
+}
+
+.prizes-detail strong {
+    color: #666;
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.prizes-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.prize-item {
+    background: #f5f5f5;
+    padding: 0.4rem 0.8rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    color: #555;
+    border: 1px solid #ddd;
+}
+
+/* ===================== NAVIGATION BUTTONS ===================== */
+.navigation-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1rem;
+    position: relative;
+    z-index: 2;
+}
+
+.nav-button {
+    padding: 0.9rem 2rem;
+    border: none;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #2f6f4e 0%, #1f4d33 100%);
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+}
+
+.nav-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(47, 111, 78, 0.4);
+    background: linear-gradient(135deg, #3a8a5f 0%, #2f6f4e 100%);
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 600px) {
+    .totals-header h1 {
+        font-size: 2.5rem;
+    }
+
+    .total-card {
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .person-name {
+        font-size: 1.2rem;
+    }
+
+    .person-total {
+        font-size: 1.4rem;
+    }
+
+    .medal {
+        font-size: 1.5rem;
+    }
+
+    .global-total {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .global-value {
+        font-size: 1.2rem;
+    }
+
+    .navigation-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .prizes-list {
+        flex-direction: column;
+    }
+
+    .prize-item {
+        text-align: center;
+    }
+}

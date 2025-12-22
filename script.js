@@ -27,6 +27,59 @@ const lotteryDatabase = {
 };
 
 // ========================================
+// Prizes Data
+// ========================================
+const prizesData = [
+    { number: "26789", amount: 50000 },
+    { number: "20641", amount: 25000 },
+    { number: "59831", amount: 15000 },
+    { number: "81564", amount: 1000 },
+    { number: "29429", amount: 1000 },
+    { number: "63970", amount: 900 },
+    { number: "17890", amount: 840 },
+    { number: "69041", amount: 940 },
+    { number: "81430", amount: 700 },
+    { number: "28491", amount: 600 },
+    { number: "72054", amount: 550 },
+    { number: "48206", amount: 500 },
+    { number: "43210", amount: 450 },
+    { number: "10752", amount: 400 },
+    { number: "08825", amount: 300 },
+    { number: "22234", amount: 300 },
+    { number: "50364", amount: 300 },
+    { number: "54862", amount: 230 },
+    { number: "00217", amount: 160 },
+    { number: "15842", amount: 150 },
+    { number: "33873", amount: 110 },
+    { number: "53816", amount: 90 },
+    { number: "97340", amount: 90 },
+    { number: "65843", amount: 80 },
+    { number: "23974", amount: 80 },
+    { number: "76281", amount: 70 },
+    { number: "70596", amount: 60 },
+    { number: "04821", amount: 60 },
+    { number: "09914", amount: 60 },
+    { number: "26804", amount: 60 },
+    { number: "17843", amount: 60 },
+    { number: "69407", amount: 60 },
+    { number: "86103", amount: 50 },
+    { number: "08461", amount: 50 },
+    { number: "02764", amount: 40 },
+    { number: "15196", amount: 30 },
+    { number: "11863", amount: 30 },
+    { number: "79062", amount: 20 },
+    { number: "68954", amount: 15 },
+    { number: "25079", amount: 10 },
+    { number: "50273", amount: 9 },
+    { number: "12095", amount: 6 },
+    { number: "10574", amount: 5 },
+    { number: "12384", amount: 4 },
+    { number: "92653", amount: 3 },
+    { number: "56290", amount: 2 },
+    { number: "19530", amount: 1 }
+];
+
+// ========================================
 // DOM Elements
 // ========================================
 const form = document.getElementById('verificationForm');
@@ -150,11 +203,43 @@ function verifyLotteryNumber(name, number) {
 }
 
 /**
+ * Checks if a number has won a prize
+ */
+function checkPrize(number) {
+    const prize = prizesData.find(p => p.number === number);
+    return prize ? prize.amount : 0;
+}
+
+/**
+ * Formats a number as currency
+ */
+function formatCurrency(amount) {
+    return new Intl.NumberFormat('es-ES', {
+        style: 'currency',
+        currency: 'EUR',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+    }).format(amount);
+}
+
+/**
  * Displays the verification result
  */
 function displayResult(result) {
     if (result.success) {
-        showCustomAlert(`¡Número Verificado!\n\nEl número ${result.number} pertenece a ${result.holderName}`, '✅');
+        const prizeAmount = checkPrize(result.number);
+        
+        if (prizeAmount > 0) {
+            showCustomAlert(
+                `¡ENHORABUENA! 🎉\n\n¡El número ${result.number} ha sido PREMIADO!\n\nTitular: ${result.holderName}\n\n💰 Premio: ${formatCurrency(prizeAmount)}`,
+                '🏆'
+            );
+        } else {
+            showCustomAlert(
+                `¡Número Verificado!\n\nEl número ${result.number} pertenece a ${result.holderName}\n\nEste número no ha sido premiado.`,
+                '✅'
+            );
+        }
     } else {
         if (result.reason === 'number_not_found') {
             showCustomAlert(`Número No Válido\n\nEl número no está registrado para ${result.holderName}`, '❌');
